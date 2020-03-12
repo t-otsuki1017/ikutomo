@@ -1,0 +1,8 @@
+<h3>記事一覧</h3>
+<section class="post">
+  <% current_member.posts.each do |post| %>
+    <section class="post-title">
+      <h3 class="post-title"><%= link_to post.title, post_path(post) %></h3>
+    </section>
+  <% end %>
+</section>

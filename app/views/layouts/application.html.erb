@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>育友</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "育友", root_path %>
+        <nav>
+          <ul>
+            <% if member_signed_in? %>
+        <li>会員</li>
+        <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+      <% elsif admin_signed_in? %>
+        <li>管理者</li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+      <% else %>
+        <li>新規ー</li>
+        <li><%= link_to "新規登録", new_member_registration_path %></li>
+        <li><%= link_to "ログイン", new_member_session_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
